@@ -6,7 +6,7 @@ def get_file_content():
         return file_content
 
 def run_unit_test_cases():
-    # create a nomenclature
+    # create a nomenclature for the test cases
 
 
 # main() method
