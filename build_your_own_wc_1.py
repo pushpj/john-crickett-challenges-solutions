@@ -1,8 +1,8 @@
 import sys
 import os
 
-FILE_NAME_LITERAL = "FILE_NAME";
-FILE_DATA_FROM_INPUT = "";
+FILE_NAME_LITERAL = "FILE_NAME"
+FILE_DATA_FROM_INPUT = ""
 
 # this method is responsible to provide CLI params for the script
 def get_user_inputs() -> str:
