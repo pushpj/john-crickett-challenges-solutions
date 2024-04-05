@@ -3,3 +3,4 @@ I will be trying to add solutions to the John Crickett Coding Challenges (https:
 
 1. Build Your Own WC (https://codingchallenges.fyi/challenges/challenge-wc)
 2. Build Your Own JSON Parser (https://codingchallenges.fyi/challenges/challenge-json-parser)
+3. Build Your Own Compression Tool (https://codingchallenges.fyi/challenges/challenge-huffman)
