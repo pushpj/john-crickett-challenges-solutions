@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class BuildYourOwnCut {
@@ -39,7 +40,16 @@ public class BuildYourOwnCut {
         String fileContent = readFile(fileName);
         if (flag.startsWith("-f")) {
             // fetching the value of the column number from the "-f" flag
-            Integer required_tab_count = Integer.parseInt(String.valueOf(flag.charAt(flag.length() - 1)));
+            List<Integer> required_tab_counts = new ArrayList<>(1);
+            try {
+                required_tab_counts.add(Integer.parseInt(flag.substring(2)));
+            } catch (NumberFormatException e) {
+                String[] tab_counts_list = flag.substring(2)
+                        .split(",");
+                for (String tab_cnt : tab_counts_list) {
+                    required_tab_counts.add(Integer.parseInt(tab_cnt));
+                }
+            }
 
             // getting the number of tabs from the file, to fetch the number of rows
             Integer tab_count = 0;
@@ -60,16 +70,21 @@ public class BuildYourOwnCut {
             // splitting the file content based on the tab or next line character
             String[] split_list_based_on_tab = fileContent.split(delimiter_regex);
 
+            String output_string = "";
             // running this loop which prints the column mentioned in the flag
-            Integer some_count = -1;
-            for (int i = required_tab_count; i < split_list_based_on_tab.length; i += tab_count) {
-                try {
-                    System.out.println(split_list_based_on_tab[i + some_count]);
-                    some_count++;
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    break;
+            for (Integer required_tab_count : required_tab_counts) {
+                Integer some_count = -1;
+                for (int i = required_tab_count; i < split_list_based_on_tab.length; i += tab_count) {
+                    try {
+                        output_string = output_string + split_list_based_on_tab[i + some_count] + "\t";
+                        some_count++;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        break;
+                    }
                 }
+                output_string = output_string + "\n";
             }
+            System.out.print(output_string);
         }
     }
 
